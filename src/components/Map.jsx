@@ -11,9 +11,16 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useCities } from "../contexts/Citiescontext";
+import { useGeolocation } from "../hooks/useGeoLocation";
+import Button from "./Button";
 
 const Map = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    getPosition,
+    position: gLocPos,
+    isLoading: isLoadingPosition,
+  } = useGeolocation();
   const { cities } = useCities();
   const mapLat = searchParams.get("lat");
   const mapLng = searchParams.get("lng");
@@ -22,8 +29,19 @@ const Map = () => {
   useEffect(() => {
     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
   }, [mapLat, mapLng]);
+
+  useEffect(() => {
+    if (gLocPos) {
+      setMapPosition([gLocPos.lat, gLocPos.lng]);
+    }
+  }, [gLocPos]);
   return (
     <div className={styles.mapContainer}>
+      {!gLocPos && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "Loading..." : "Use your Location"}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={13}
@@ -35,7 +53,10 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {cities.map((city) => (
-          <Marker position={[city.position.lat, city.position.lng]}>
+          <Marker
+            position={[city.position.lat, city.position.lng]}
+            key={city.id}
+          >
             <Popup>
               <span>{city.emoji}</span>
               <span>{city.cityName}</span>
