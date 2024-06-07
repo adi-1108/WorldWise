@@ -12,11 +12,14 @@ const CityList = () => {
   if (!cities.length)
     return <Message message={"Add your first city by clikcing on the map"} />;
   return (
-    <ul className={styles.cityList}>
-      {cities?.map((city) => (
-        <CityItem city={city} key={city.id} />
-      ))}
-    </ul>
+    <>
+      
+      <ul className={styles.cityList}>
+        {cities?.map((city) => (
+          <CityItem city={city} key={city.id} />
+        ))}
+      </ul>
+    </>
   );
 };
 
