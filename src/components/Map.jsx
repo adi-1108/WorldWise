@@ -1,31 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Map.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvent,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useCities } from "../contexts/Citiescontext";
 
 const Map = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  const { cities } = useCities();
+  const mapLat = searchParams.get("lat");
+  const mapLng = searchParams.get("lng");
   const [mapPosition, setMapPosition] = useState([40, 0]);
-  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
+  }, [mapLat, mapLng]);
   return (
     <div className={styles.mapContainer}>
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} className={styles.map}>
+      <MapContainer
+        center={mapPosition}
+        zoom={13}
+        scrollWheelZoom={true}
+        className={styles.map}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {cities.map((city) => (
+          <Marker position={[city.position.lat, city.position.lng]}>
+            <Popup>
+              <span>{city.emoji}</span>
+              <span>{city.cityName}</span>
+            </Popup>
+          </Marker>
+        ))}
+        <ChangeView position={mapPosition} />
+        <DetectClick />
       </MapContainer>
     </div>
   );
 };
 
+function ChangeView({ position }) {
+  const map = useMap();
+  map.setView(position);
+  return null;
+}
+
+function DetectClick() {
+  const navigate = useNavigate();
+  useMapEvent({
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+  });
+}
 export default Map;
