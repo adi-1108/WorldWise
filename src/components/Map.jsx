@@ -13,17 +13,16 @@ import "leaflet/dist/leaflet.css";
 import { useCities } from "../contexts/Citiescontext";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
+import { useURLposition } from "../hooks/useURLposition";
 
 const Map = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const {
     getPosition,
     position: gLocPos,
     isLoading: isLoadingPosition,
   } = useGeolocation();
   const { cities } = useCities();
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  const { mapLat, mapLng } = useURLposition();
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   useEffect(() => {
