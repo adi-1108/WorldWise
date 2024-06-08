@@ -1,28 +1,40 @@
 {
   "cities": [
     {
-      "id": "2ff0",
-      "cityName": "Castello de la Plana",
-      "country": "Spain",
+      "id": "fc05",
+      "cityName": "Durg",
+      "country": "India",
       "position": {
-        "lat": "40.00460732577124",
-        "lng": "-0.004119873046875001"
+        "lat": "21.172726857145108",
+        "lng": "81.33247375488283"
       },
-      "emoji": "🇪🇸",
-      "date": "2024-06-08T08:58:52.872Z",
+      "emoji": "🇮🇳",
+      "date": "2024-06-08T09:27:54.666Z",
       "notes": ""
     },
     {
-      "id": "5edf",
-      "cityName": "Raipur",
+      "id": "c4f9",
+      "cityName": "Arsha",
       "country": "India",
       "position": {
-        "lat": "21.256101625916397",
-        "lng": "81.64764404296876"
+        "lat": "23.23125092389779",
+        "lng": "86.33056640625"
       },
       "emoji": "🇮🇳",
-      "date": "2024-06-08T09:25:17.112Z",
-      "notes": "MY HOME\n"
+      "date": "2024-06-08T09:27:59.666Z",
+      "notes": ""
+    },
+    {
+      "id": "bd1f",
+      "cityName": "Lafon",
+      "country": "South Sudan",
+      "position": {
+        "lat": "5.61598581915534",
+        "lng": "32.43164062500001"
+      },
+      "emoji": "🇸🇸",
+      "date": "2024-06-08T09:28:02.889Z",
+      "notes": ""
     }
   ]
 }

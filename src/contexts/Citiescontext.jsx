@@ -45,7 +45,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         isloading: false,
-        cities: state.cities.filter((city) => city.id !== id),
+        cities: state.cities.filter((city) => city.id !== action.payload),
       };
     case "rejected":
       return {
@@ -79,6 +79,7 @@ const CitiesProvider = ({ children }) => {
   }, []);
 
   const getCities = async (id) => {
+    if (Number(id) === currentcity.id) return;
     dispatch({ type: "loading" });
     try {
       const response = await fetch(`http://localhost:3001/cities/${id}`);

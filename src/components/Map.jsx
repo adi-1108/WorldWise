@@ -22,7 +22,7 @@ const Map = () => {
     isLoading: isLoadingPosition,
   } = useGeolocation();
   const { cities } = useCities();
-  const { mapLat, mapLng } = useURLposition();
+  const { lat: mapLat, lng: mapLng } = useURLposition();
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   useEffect(() => {
