@@ -3,7 +3,7 @@ import {
   useContext,
   useEffect,
   useReducer,
-  useState,
+  
 } from "react";
 
 const CitiesContext = createContext();
@@ -117,9 +117,6 @@ const CitiesProvider = ({ children }) => {
     } catch (error) {
       dispatch({ type: "rejected", payload: "Error deleting the Data" });
     }
-
-    setCities((cities) => cities.filter((city) => city.id !== id));
-    setIsloading(false);
   };
   return (
     <CitiesContext.Provider
