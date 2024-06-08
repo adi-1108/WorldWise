@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./CityItem.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useCities } from "../contexts/Citiescontext";
+import Spinner from "./Spinner";
 
 const CityItem = ({ city }) => {
-  const { currentcity } = useCities();
+  const { currentcity, deleteCity, isloading } = useCities();
   const { cityName, emoji, date, id, position } = city;
   const formatDate = (date) =>
     new Intl.DateTimeFormat("en", {
@@ -14,6 +15,11 @@ const CityItem = ({ city }) => {
       weekday: "long",
     }).format(new Date(date));
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    deleteCity(id);
+  };
+  if (isloading) return <Spinner />;
   return (
     <li>
       <Link
@@ -25,7 +31,9 @@ const CityItem = ({ city }) => {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleClick}>
+          &times;
+        </button>
       </Link>
     </li>
   );

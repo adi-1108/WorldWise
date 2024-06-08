@@ -32,7 +32,7 @@ function Form() {
   const [geoLocationError, setGeoLocationError] = useState("");
   const [emoji, setEmoji] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  const { createCity, cities } = useCities();
+  const { createCity, isloading } = useCities();
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -77,14 +77,17 @@ function Form() {
     };
     // console.log(newCity);
     createCity(newCity);
-    navigate('/app/cities')
+    navigate("/app/cities");
   };
 
   if (geoLocationLoading) return <Spinner />;
   if (geoLocationError) return <Message message={geoLocationError} />;
 
   return (
-    <form onSubmit={handleSumbit} className={styles.form}>
+    <form
+      onSubmit={handleSumbit}
+      className={`${styles.form} ${isloading ? styles.loading : styles.form}`}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input

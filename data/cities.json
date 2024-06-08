@@ -1,76 +1,28 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": "73930385"
-    },
-    {
-      "cityName": "Madrid",
+      "id": "2ff0",
+      "cityName": "Castello de la Plana",
       "country": "Spain",
+      "position": {
+        "lat": "40.00460732577124",
+        "lng": "-0.004119873046875001"
+      },
       "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
+      "date": "2024-06-08T08:58:52.872Z",
+      "notes": ""
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
-      "id": "7180",
+      "id": "5edf",
       "cityName": "Raipur",
       "country": "India",
       "position": {
-        "lat": "21.247782268367747",
-        "lng": "81.64352416992189"
+        "lat": "21.256101625916397",
+        "lng": "81.64764404296876"
       },
       "emoji": "🇮🇳",
-      "date": "2024-06-08T08:43:24.566Z",
-      "notes": "My home"
-    },
-    {
-      "id": "0597",
-      "cityName": "Bhubaneswar",
-      "country": "India",
-      "position": {
-        "lat": "20.253187295560036",
-        "lng": "85.83341601163015"
-      },
-      "emoji": "🇮🇳",
-      "date": "2024-06-08T08:46:35.145Z",
-      "notes": "Bhonsad"
-    },
-    {
-      "id": "703b",
-      "cityName": "Benlloch",
-      "country": "Spain",
-      "position": {
-        "lat": "40.207721306173056",
-        "lng": "0.04737854003906251"
-      },
-      "emoji": "🇪🇸",
-      "date": "2024-06-08T08:47:12.334Z",
-      "notes": "TEST"
+      "date": "2024-06-08T09:25:17.112Z",
+      "notes": "MY HOME\n"
     }
   ]
 }
