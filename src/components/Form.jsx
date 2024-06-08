@@ -11,6 +11,8 @@ import Spinner from "./Spinner";
 import Message from "./Message";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { useCities } from "../contexts/Citiescontext";
+
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -30,6 +32,7 @@ function Form() {
   const [geoLocationError, setGeoLocationError] = useState("");
   const [emoji, setEmoji] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const { createCity, cities } = useCities();
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -43,7 +46,7 @@ function Form() {
         );
 
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (!data.city || !data.locality)
           throw new Error("This dosen't seems like a city");
         setCityName(data.city);
@@ -72,7 +75,9 @@ function Form() {
       date,
       notes,
     };
-    console.log(newCity);
+    // console.log(newCity);
+    createCity(newCity);
+    navigate('/app/cities')
   };
 
   if (geoLocationLoading) return <Spinner />;
